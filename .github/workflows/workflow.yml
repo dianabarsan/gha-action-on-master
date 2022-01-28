@@ -1,0 +1,15 @@
+name: Do something on push to main
+
+on: [push]
+
+jobs:
+  name: Work
+  runs-on: ubuntu-latest
+  if: ${{ github.ref == 'refs/heads/main' }}
+
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    - run: node ./index.js
+
+

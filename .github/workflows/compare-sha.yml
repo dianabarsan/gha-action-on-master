@@ -1,4 +1,4 @@
-name: One time run
+name: Sha compare
 
 on: [push]
 

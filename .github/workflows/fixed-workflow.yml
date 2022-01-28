@@ -1,4 +1,4 @@
-name: Checkout without ref
+name: Checkout with ref
 
 on: [push]
 

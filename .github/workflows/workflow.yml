@@ -1,4 +1,4 @@
-name: Do something on push to main
+name: Checkout with ref
 
 on: [push]
 

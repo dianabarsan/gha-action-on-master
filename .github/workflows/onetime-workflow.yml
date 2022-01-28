@@ -1,0 +1,16 @@
+name: One time run
+
+on: [push]
+
+jobs:
+  work:
+    name: Work
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' && github.run_attempt == 1 }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: node ./index.js
+
+

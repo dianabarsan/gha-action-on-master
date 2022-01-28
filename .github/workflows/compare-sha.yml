@@ -1,0 +1,31 @@
+name: One time run
+
+on: [push]
+
+jobs:
+  work:
+    name: Work
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - run: git checkout HEAD^
+
+      - name: Get HEAD ref
+        id: head-ref
+        run: echo "::set-output name=ref::$(git rev-parse HEAD)"
+
+      - uses: actions/setup-node@v2
+
+      - run: |
+          echo "HEAD ref ${{ steps.head-ref.outputs.ref }}"
+          echo "commit ref ${{ github.sha }}"
+
+      - name: Run
+        if: ${{ github.sha == steps.head-ref.outputs.ref }}
+        run: node ./index.js
+
+
